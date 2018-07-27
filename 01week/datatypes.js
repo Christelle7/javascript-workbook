@@ -1,3 +1,4 @@
+//  doing a new thing 
 // Use repl.it to write the following code. Paste your code into your workbook in the file called datatypes.js.
  
  // Write a JavaScript program to display the current day and time.
