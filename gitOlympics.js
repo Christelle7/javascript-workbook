@@ -22,3 +22,5 @@ const printListOfOlympians =(inputArr)=> {
 }
 const names =["michaelPhelps", "yousinVualt","muhamedAli","Zeus","Jake"]
 printListOfOlympias (names);
+
+// new things
