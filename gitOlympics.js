@@ -14,12 +14,11 @@
 // When everyone has an open pull request raise your hand for a check
 // The first team with all pull requests merged/closed - wins
 
-
+// Function inside of a Function
 const printListOfOlympians =(inputArr)=> {
   inputArr.forEach =((item)=>{
     console.log (item);
   });
-
 }
 const names =["michaelPhelps", "yousinVualt","muhamedAli","Zeus","Jake"]
 printListOfOlympias (names);
