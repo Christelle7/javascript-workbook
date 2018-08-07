@@ -7,7 +7,7 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-
+// ready ready
 function rockPaperScissors(hand1, hand2) {
 
   // Write code here
