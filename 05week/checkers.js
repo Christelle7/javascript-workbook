@@ -7,17 +7,27 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
+// create the checker Board Game
+// check for available space with coordinates
+//if empty space is avaialbel then move
+//
 
-function Checker() {
-  // Your code here
+class Checker {
+  constructor(color){
+    if(color === 'red'){
+      this.symbol ='R'
+    } else {
+      this.symbol ='B'
+    }
+  }
 }
 
 class Board {
   constructor() {
-    this.grid = []
-  }
+    this.checkers=[];
+    this.grid = [];
   // method that creates an 8x8 array, filled with null values
-  createGrid() {
+  this.createGrid = function() {
     // loop to create the 8 rows
     for (let row = 0; row < 8; row++) {
       this.grid[row] = [];
@@ -26,8 +36,8 @@ class Board {
         this.grid[row].push(null);
       }
     }
-  }
-  viewGrid() {
+  };
+  this.viewGrid= function(){
     // add our column numbers
     let string = "  0 1 2 3 4 5 6 7\n";
     for (let row = 0; row < 8; row++) {
@@ -50,18 +60,107 @@ class Board {
       string += "\n";
     }
     console.log(string);
+  };
+
+ this.createCheckers = function(){
+  const redPosition =[ 
+[0,1],
+[0,3],
+[0,5],
+[0,7],
+[1,0],
+[1,2],
+[1,4],
+[1,6],
+[2,1],
+[2,3],
+[2,5],
+[2,7]
+  ]
+  for (let i=0; i<12;i++){
+    let redRow = redPosition[i][0];
+    let redColumn = redPosition[i][1];
+    let redChecker= new Checker('red');
+    this.checkers.push (redChecker);
+    this.grid[redRow][redColumn]= redChecker;
+
   }
 
+
+   const blackPosition=[
+     [5,0],
+     [5,2],
+     [5,4],
+     [5,6],
+     [6,1],
+     [6,3],
+     [6,5],
+     [6,7],
+     [7,0],
+     [7,2],
+     [7,4],
+     [7,6]
+   ]
+   for (let i=0; i<12;i++){
+    let blackRow = blackPosition[i][0];
+    let blackColumn = blackPosition[i][1];
+    let blackChecker= new Checker('black');
+    this.checkers.push (blackChecker);
+    this.grid[blackRow][blackColumn]= blackChecker;
+
+  }
+
+ }
+
+
+
   // Your code here
+
 }
+}
+
 
 class Game {
   constructor() {
     this.board = new Board;
+    this.start = function(){
+      this.board.createGrid();
+    this.board.createCheckers();
+    }
+    //  ********************
+this.moveChecker =function(source, destination){
+
+  const sourceRow = parseInt(source.charAt(0));
+  const sourceColumn = parseInt(source.charAt(1));
+  const destinationRow =parseInt(destination.charAt(0));
+  const destinationColumn = parseInt(destination.charAt(1));
+  this.board.grid [destinationRow][destinationColumn] = this.board.grid [sourceRow][sourceColumn];
+  this.board.grid [sourceRow][sourceColumn]=null;
+
+  if(Math.abs(destinationRow - sourceRow)=== 2){
+    let jumpRow
+    let jumpColumn
+    if(destinationRow - sourceRow > 0){
+      jumpRow = sourceRow+1
+    }else{
+      jumpRow = destinationRow+1
+    } 
+
+    if( destinationColumn - sourceColumn>0){
+      jumpColumn = sourceColumn+1
+    } else{
+      jumpColumn = destinationColumn+1
+    }
+    this.board.grid [jumpRow][jumpColumn]= null;
+    this.board.checkers.pop();
   }
-  start() {
-    this.board.createGrid();
+}
+
+
   }
+  // start() {
+    
+  // }
 }
 
 function getPrompt() {
