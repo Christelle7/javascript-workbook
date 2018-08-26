@@ -6,11 +6,7 @@ const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
-
-// ready ready
-function rockPaperScissors(hand1, hand2) {
-
-  // ROCK scissors PAPER
+// ROCK scissors PAPER
  // 2 player game where each player's input is compared to one another and the value of their input determines who wins
  //in the game rock is > then scissors but < paper
  //paper is > rock but, sciccors
@@ -19,21 +15,29 @@ function rockPaperScissors(hand1, hand2) {
 // User2 input of ['rock', 'paper', or 'scissors'.]
 // Compare User1 input to User2 input.
 
-let User1 = prompt ("Player numero1 rock, paper, scissors");
-let User2 = prompt ("Player numero2 rock, paper, scissors");
-
-const rockPaperMaster =()=>{
-  if ( User1 === 'rock' && User2 === 'scissors'|| User1 === 'paper' && User2 === 'rock'|| User1=== 'scissors'&& User2=== 'paper'){
- return "player 1wins"
- } else if(User1 === 'rock' && User2 === 'paper'|| User1 ==='paper' && User2 === 'scissors'|| User1 ==='scissors' && User2 === 'rock'){ 
-return "player 2 wins"
-  } else if( User1 === User2) {
-return "It's a Tie"
-}else{
- console.log("Please use rock, scissors or paper")
+const sanitizeUserInput=(input)=>{
+  return input.toLowerCase().trim();
 }
-} 
-rockPaperMaster();
+
+
+function rockPaperScissors(hand1, hand2) {
+  
+  const User1= sanitizeUserInput(hand1);
+  const User2= sanitizeUserInput(hand2);
+
+
+// const rockPaperMaster =()=>{
+  if ( User1 === 'rock' && User2 === 'scissors'|| User1 === 'paper' && User2 === 'rock'|| User1=== 'scissors'&& User2=== 'paper'){
+    return "Hand one wins!"
+	} else if(User1 === 'rock' && User2 === 'paper'|| User1 ==='paper' && User2 === 'scissors'|| User1 ==='scissors' && User2 === 'rock'){ 
+		return "Hand two wins!"
+	} else if( User1 === User2) {
+		return "It's a tie!"
+	}else{
+ 		console.log("Please use rock, scissors or paper")
+	}
+// } 
+// rockPaperMaster();
 
 
 
