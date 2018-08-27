@@ -58,7 +58,7 @@ const letters = [
 ];
 
 const mainMethod =(word) => {
-  let l = lettersOnly(word);
+  const l = lettersOnly(word);
   if(l === false)
   {
     return "Please Enter letters Only";
