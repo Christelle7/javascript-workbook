@@ -24,11 +24,31 @@ function printBoard() {
 }
 
 function horizontalWin() {
-  // Your code here
+  for(i = 0; i < 3; i++)
+  {
+    const x = board[i][0];
+    const y = board[i][1];
+    const z = board[i][2];
+
+    if(x == y == z && x !== " " && y !== " " && z !== " ")
+    {
+      return true;
+    }
+  }
 }
 
 function verticalWin() {
-  // Your code here
+  for(i = 0; i < 3; i++)
+  {
+    const x = board[0][i];
+    const y = board[1][i];
+    const z = board[2][i];
+
+    if(x == y == z && x !== " " && y !== " " && z !== " ")
+    {
+      return true;
+    }
+  }
 }
 
 function diagonalWin() {
@@ -36,11 +56,32 @@ function diagonalWin() {
 }
 
 function checkForWin() {
-  // Your code here
+  var horzResult = horizontalWin();
+  var vertResult = verticalWin();
+  var diagResult = diagonalWin();
+  
+  if(horzResult == true || vertResult == true || diagonalResult == true)
+  {
+    return true;
+  }
+  else{
+    return
+  }
+  
 }
 
 function ticTacToe(row, column) {
-  // Your code here
+  board[row][column] = playerTurn;
+  const result = checkForWin();
+
+  if(playerTurn == "X")
+  {
+    playerTurn = "O";
+  }
+  else{
+    playerTurn = "X";
+  }
+
 }
 
 function getPrompt() {
