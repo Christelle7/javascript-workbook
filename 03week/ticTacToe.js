@@ -24,7 +24,7 @@ function printBoard() {
 }
 
 function horizontalWin() {
-  for(i = 0; i < 3; i++)
+  for(let i = 0; i < 3; i++)
   {
     const x = board[i][0];
     const y = board[i][1];
@@ -35,11 +35,30 @@ function horizontalWin() {
       return true;
     }
   }
+  return false;
 }
 
-function verticalWin() {
-  for(i = 0; i < 3; i++)
+function diagonalWin() {
+
+    const x = board[2][0];
+    const y = board[1][1];
+    const z = board[0][2];
+    const a = board[2][0];
+    const b = board[2][2];
+
+    if(x == y == z && x !== " " && y !== " " && z !== " ")
   {
+      return true;
+    }
+    if (a == b == y && x !== " " && y !== " " && z !== " "){
+      return true;
+    }
+    return false;
+  }
+
+function verticalWin() {
+  for( let i = 0; i < 3; i++)
+  { 
     const x = board[0][i];
     const y = board[1][i];
     const z = board[2][i];
@@ -48,10 +67,9 @@ function verticalWin() {
     {
       return true;
     }
-  }
-}
 
-function diagonalWin() {
+
+  }
   // Your code here
 }
 
@@ -60,12 +78,16 @@ function checkForWin() {
   var vertResult = verticalWin();
   var diagResult = diagonalWin();
   
-  if(horzResult == true || vertResult == true || diagonalResult == true)
+console.log("horizontal result " + horzResult);
+console.log("vert result " + vertResult);
+console.log("diag result " + diagResult);
+
+  if(horzResult == true || vertResult == true || diagResult == true)
   {
     return true;
   }
   else{
-    return
+    return false;
   }
   
 }
@@ -73,7 +95,8 @@ function checkForWin() {
 function ticTacToe(row, column) {
   board[row][column] = playerTurn;
   const result = checkForWin();
-
+  console.log("Check for win" + result);
+  if(result === false){
   if(playerTurn == "X")
   {
     playerTurn = "O";
@@ -81,7 +104,9 @@ function ticTacToe(row, column) {
   else{
     playerTurn = "X";
   }
-
+} else{
+  console.log('You are the amazing Winner player ' + playerTurn );
+}
 }
 
 function getPrompt() {
