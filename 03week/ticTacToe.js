@@ -26,11 +26,11 @@ function printBoard() {
 function horizontalWin() {
   for(let i = 0; i < 3; i++)
   {
-    const x = board[i][0];
-    const y = board[i][1];
-    const z = board[i][2];
+    let x = board[i][0];
+    let y = board[i][1];
+    let z = board[i][2];
 
-    if(x == y == z && x !== " " && y !== " " && z !== " ")
+    if(x == playerTurn && y == playerTurn && z == playerTurn)
     {
       return true;
     }
@@ -46,15 +46,14 @@ function diagonalWin() {
     const a = board[2][0];
     const b = board[2][2];
 
-    if(x == y == z && x !== " " && y !== " " && z !== " ")
-  {
+    if(x == playerTurn && y == playerTurn && z == playerTurn || a == playerTurn && b == playerTurn && y == playerTurn)
+    {
       return true;
     }
-    if (a == b == y && x !== " " && y !== " " && z !== " "){
-      return true;
-    }
+
     return false;
   }
+
 
 function verticalWin() {
   for( let i = 0; i < 3; i++)
@@ -63,24 +62,19 @@ function verticalWin() {
     const y = board[1][i];
     const z = board[2][i];
 
-    if(x == y == z && x !== " " && y !== " " && z !== " ")
+    if(x == playerTurn && y == playerTurn && z == playerTurn)
     {
       return true;
     }
-
-
   }
-  // Your code here
+
+  return false;
 }
 
 function checkForWin() {
   var horzResult = horizontalWin();
   var vertResult = verticalWin();
   var diagResult = diagonalWin();
-  
-console.log("horizontal result " + horzResult);
-console.log("vert result " + vertResult);
-console.log("diag result " + diagResult);
 
   if(horzResult == true || vertResult == true || diagResult == true)
   {
@@ -93,9 +87,24 @@ console.log("diag result " + diagResult);
 }
 
 function ticTacToe(row, column) {
+
+  ///check values
+  if(row > 2 || column > 2)
+  {
+    console.log("Invalid attempt");
+    return;
+  }
+
+  //check for existing value
+  if(board[row][column] !== " ")
+  {
+    console.log("Space already taken");
+    return;
+  }
+
+
   board[row][column] = playerTurn;
   const result = checkForWin();
-  console.log("Check for win" + result);
   if(result === false){
   if(playerTurn == "X")
   {
@@ -106,6 +115,7 @@ function ticTacToe(row, column) {
   }
 } else{
   console.log('You are the amazing Winner player ' + playerTurn );
+  process.exit();
 }
 }
 
