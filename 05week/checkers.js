@@ -111,10 +111,7 @@ class Board {
   }
 
  }
-
-
-
-  // Your code here
+ // Your code here
 
 }
 }
@@ -134,6 +131,12 @@ this.moveChecker =function(source, destination){
   const sourceColumn = parseInt(source.charAt(1));
   const destinationRow =parseInt(destination.charAt(0));
   const destinationColumn = parseInt(destination.charAt(1));
+
+
+
+
+  if(isLegalInput(sourceRow,sourceColumn,destinationRow,destinationColumn)&& isLegalMove(sourceColumn,sourceRow,destinationColumn,destinationRow)){ 
+
   this.board.grid [destinationRow][destinationColumn] = this.board.grid [sourceRow][sourceColumn];
   this.board.grid [sourceRow][sourceColumn]=null;
 
@@ -154,14 +157,48 @@ this.moveChecker =function(source, destination){
     this.board.grid [jumpRow][jumpColumn]= null;
     this.board.checkers.pop();
   }
+} else{
+  console.log('Illegal Move')
 }
 
+};
+
+
+
+const isLegalInput =( sourceColumn,sourceRow,destinationColumn,destinationRow)=> {
+  const 
+  sourceGood=(sourceColumn>=0&& sourceColumn<=7)&& (sourceRow>=0 && sourceRow<=7);
+  const destinationGood=(destinationColumn >=0&&destinationColumn<=7)&&( destinationRow>=0&&destinationRow<=7);
+
+  return (sourceGood && destinationGood)
+}
+
+
+const isLegalMove =( sourceColumn,sourceRow,destinationColumn,destinationRow)=> {
+  const goodRowValue=(Math.abs( destinationRow-sourceRow))
+  const goodColumnValue=(Math.abs( destinationColumn-sourceColumn))
+
+  if (goodRowValue === 1 &&  goodColumnValue === 1)
+  {
+    return true;
+  } else if(goodRowValue===2 && goodColumnValue===2){
+    return true; 
+  } else{
+    return false;
+  }
+}
+}
+
+//const isLegalMove =()=> {
+
+//}
+
+//const isLegalMove =()=> {
+
+//}
 
   }
-  // start() {
-    
-  // }
-}
+  
 
 function getPrompt() {
   game.board.viewGrid();
