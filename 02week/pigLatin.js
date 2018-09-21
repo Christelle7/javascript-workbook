@@ -10,7 +10,158 @@ const rl = readline.createInterface({
 
 function pigLatin(word) {
 
-  // Your code here
+  // Your code here 
+  // PIG LATIN
+// writting a Game where the user inputs a value that contains letters where if the word begins with
+// 1 consonant that letter is moved to the end of the word and the letter ay( the string "ay") is added to the actual letter such as pig would be igpay
+// if a word begins with two consonants both letters are moved to the end and the string ay is appended to the actual word example grade adegray
+// if a word begins with a vowel the letter remains in place and the srting way is appended to the actual word example apple appleway
+
+// The users input is valid when they write words with the 26 letters of the alphabet.
+// the users input will the be tranformed into an array (the array process is used to detached the letters and moved them)
+// we will be looping thru the words and removing letter till they begin with a voyel
+// the split and join methods are used to split and join the elements of an array
+// the voyels are [a,e,i,o,u,y]
+// const voyels= ['a','e','i','o','y']
+// // (!voyels) would be for my consonants
+
+// write a function that takes the valid input that contains only letters blocks out numbers and other strange chararcter
+
+const vowels = ['a', 'e', 'i', 'o', 'u', 'y'];
+const letters = [
+	'a',
+	'b',
+	'c',
+	'd',
+	'e',
+	'f',
+	'g',
+	'h',
+	'i',
+	'j',
+	'k',
+	'l',
+	'm',
+	'n',
+	'o',
+	'p',
+	'q',
+	'r',
+	's',
+	't',
+	'u',
+	'v',
+	'w',
+	'x',
+	'y',
+	'z',
+];
+
+const mainMethod =(word) => {
+  const l = lettersOnly(word);
+  if(l === false)
+  {
+    return "Please Enter letters Only";
+  } 
+  return latinizedWord(word);
+
+}
+const latinizedWord =(word)=>{
+  //  let wordArr = word.split("");
+  let firstSection = "";
+  let secondSection = "";
+
+  if(vowels.indexOf(word[0]) < 0) //the word starts with a consonant do this 
+  {
+    for (let i = 0; i < word.length; i++) {
+		  if (vowels.indexOf(word[i]) > -1) {
+			
+        firstSection = word.substring(0,i)
+        secondSection = word.substring(i)
+        break;
+      
+	  	}
+    }
+  
+    return secondSection+firstSection+ "ay"
+  } else{ 
+  return word + "way"
+  }
+}
+const lettersOnly = (word) => {
+	let letterChecker = 0;
+
+	for (let i = 0; i < word.length; i++) {
+		if (letters.indexOf(word[i]) > -1) {
+			letterChecker = letterChecker + 1;
+      
+		}
+  }
+    
+		if (letterChecker === word.length) {
+			return true;
+		} else {
+			return false;
+		}
+	
+};
+
+
+mainMethod("eloquent");
+
+// const lettersOnly=(word) => {
+//   const letters = ['a','b','c','d',"e","f",'g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+//   let letterChecker = 0
+//   for(var i = 0; i < word.length; i++){
+//     if(letters.indexOf(word[i])> -1) {
+//       letterChecker= letterChecker +1
+//   }
+// }
+// if(letterChecker == word.length){
+//   return pigLatinMasterMind(word);
+
+//   }else{
+//     return "Please Enter letters Only"
+//   }
+// }
+
+// i need to write a function that takes the valid input and turns it into an array
+
+// const pigLatinMasterMind =(word)=>{
+//  return word.split("");
+// }
+
+// i need to write a function that loops thru the letters of the actual valid input and reads thru the first letters of the actual written word and finds out if the start with a voyel or a consonant
+
+// Remember .includes will let me know if the element im using is acrualklay aprt of the array i created.
+// chartAt method targets the very first element of the input in a string
+
+// const pigLatinMasterMind= (str)=>{
+//   const vowels= ['a','e','i','o','u','y'];
+//   result=str.split("");
+//   if (vowels.includes(str.chartAt(0))){
+//     return str+ ="way";
+//   } else {
+//     for (var i = 0; i < str.length; i++){
+//       if(!vowels.includes(str[i])){
+//         result.push(result.shift());
+//         }else{
+//           result.push("ay");
+//           return result.join("");
+//         }
+//       }
+//     }
+//   }
+//   pigLatinMasterMind ("consonant)";
+
+//  // if the first letter is consonant and puts the consonat at the end of the word (append)then appends "ay" the. shift method removes the first element of an array.
+
+// // if the first letters are  2 consonants appends them to the end of the word and adds "ay"
+
+// // if the first letter is a voyel then append "way" to the actual word
+
+//  // need to write a function that puts the letters of my word from the array back to one word.
+
 
 }
 
