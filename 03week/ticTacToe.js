@@ -24,23 +24,99 @@ function printBoard() {
 }
 
 function horizontalWin() {
-  // Your code here
-}
+  for(let i = 0; i < 3; i++)
+  {
+    let x = board[i][0];
+    let y = board[i][1];
+    let z = board[i][2];
 
-function verticalWin() {
-  // Your code here
+    if(x == playerTurn && y == playerTurn && z == playerTurn)
+    {
+      return true;
+    }
+  }
+  return false;
 }
 
 function diagonalWin() {
-  // Your code here
+
+    const x = board[2][0];
+    const y = board[1][1];
+    const z = board[0][2];
+    const a = board[2][0];
+    const b = board[2][2];
+
+    if(x == playerTurn && y == playerTurn && z == playerTurn || a == playerTurn && b == playerTurn && y == playerTurn)
+    {
+      return true;
+    }
+
+    return false;
+  }
+
+
+function verticalWin() {
+  for( let i = 0; i < 3; i++)
+  { 
+    const x = board[0][i];
+    const y = board[1][i];
+    const z = board[2][i];
+
+    if(x == playerTurn && y == playerTurn && z == playerTurn)
+    {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 function checkForWin() {
-  // Your code here
+  var horzResult = horizontalWin();
+  var vertResult = verticalWin();
+  var diagResult = diagonalWin();
+
+  if(horzResult == true || vertResult == true || diagResult == true)
+  {
+    return true;
+  }
+  else{
+    return false;
+  }
+  
 }
 
 function ticTacToe(row, column) {
-  // Your code here
+
+  ///check values
+  if(row > 2 || column > 2)
+  {
+    console.log("Invalid attempt");
+    return;
+  }
+
+  //check for existing value
+  if(board[row][column] !== " ")
+  {
+    console.log("Space already taken");
+    return;
+  }
+
+
+  board[row][column] = playerTurn;
+  const result = checkForWin();
+  if(result === false){
+  if(playerTurn == "X")
+  {
+    playerTurn = "O";
+  }
+  else{
+    playerTurn = "X";
+  }
+} else{
+  console.log('You are the amazing Winner player ' + playerTurn );
+  process.exit();
+}
 }
 
 function getPrompt() {
@@ -90,4 +166,4 @@ if (typeof describe === 'function') {
 
   getPrompt();
 
-}   
+}
